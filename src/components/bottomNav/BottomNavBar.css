@@ -1,0 +1,24 @@
+.navBar{
+    width: 100vw;
+    height: 80px;
+    background-color: white;
+    border: 4px solid #ee590f;
+    border-radius: 3px 3px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.icons{
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+}
+
+.imageKennyProfile{
+    width: 35px;
+    height: 45px;
+}
