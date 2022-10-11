@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import "./PopUp.css";
 import Button from "react-bootstrap/Button";
 import audio from "./respect.mp3";
-import { storedStates } from "../useContext/UseContext";
+import { togglePopup } from "../useContext/PopUpContext";
 
 const PopUp = () => {
-  const { popping } = useContext(storedStates);
-  const setPopUp = popping[1];
+  const [popUp, setPopUp] = useContext(togglePopup);
 
-  function togglePopup() {
+  console.log("setPopUp", setPopUp);
+
+  function changeStatePopup() {
     setPopUp(false);
   }
 
@@ -29,7 +30,7 @@ const PopUp = () => {
         <Button
           variant="primary"
           onClick={() => {
-            togglePopup();
+            changeStatePopup();
           }}
         >
           Move Ass

@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import "./DataEpi.css";
 import ListEpisodes from "../listEpisodes/ListEpisodes";
 import PageTurn from "../pageTurn/PageTurn";
-import { storedStates } from "../useContext/UseContext";
+import { pageNumbers } from "../useContext/PagesContext";
 
 const DataEpi = () => {
   const [episodes, setEpisodes] = useState();
-  const { page } = useContext(storedStates);
-  const pageNumber = page[0];
+  const [pageNumber] = useContext(pageNumbers);
 
   const url = `https://spapi.dev/api/episodes/?page=${pageNumber}`;
 

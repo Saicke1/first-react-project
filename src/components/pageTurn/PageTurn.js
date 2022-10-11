@@ -1,18 +1,13 @@
 import React, { useContext, useState } from "react";
 import "./PageTurn.css";
 import Pagination from "react-bootstrap/Pagination";
-import { storedStates } from "../useContext/UseContext";
 import PopUp from "../popUp/PopUp";
+import { togglePopup } from "../useContext/PopUpContext";
+import { pageNumbers } from "../useContext/PagesContext";
 
 const PageTurn = () => {
-  const { page } = useContext(storedStates);
-  const pageNumber = page[0];
-  const setPageNumber = page[1];
-
-  const { popping } = useContext(storedStates);
-  const popUp = popping[0];
-  const setPopUp = popping[1];
-  /*   console.log("popUp", popUp); */
+  const [popUp, setPopUp] = useContext(togglePopup);
+  const [pageNumber, setPageNumber] = useContext(pageNumbers);
 
   function handleClickFirst() {
     setPageNumber(pageNumber - pageNumber + 1);
@@ -22,7 +17,7 @@ const PageTurn = () => {
   function handleClickDown() {
     if (pageNumber - 1 < 1) {
       console.log("Nummer ist unter 1!!");
-      togglePopup();
+      changeStatePopup();
     } else {
       setPageNumber(pageNumber - 1);
       console.log("pageNumber", pageNumber);
@@ -32,7 +27,7 @@ const PageTurn = () => {
   function handleClickUp() {
     if (pageNumber + 1 > 32) {
       console.log("Nummer ist über 32!");
-      togglePopup();
+      changeStatePopup();
     } else {
       setPageNumber(pageNumber + 1);
       console.log("pageNumber", pageNumber);
@@ -44,7 +39,7 @@ const PageTurn = () => {
     console.log("pageNumber", pageNumber);
   }
 
-  function togglePopup() {
+  function changeStatePopup() {
     console.log("This page doesn't exist!");
     setPopUp(true);
   }
