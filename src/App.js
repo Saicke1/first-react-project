@@ -12,13 +12,16 @@ import LogInView from "./views/logInView/LogInView";
 import RegistrationView from "./views/registrationView/RegistrationView";
 import PopUpContext from "./components/useContext/PopUpContext";
 import PagesContext from "./components/useContext/PagesContext";
+import UserContext from "./components/useContext/UserContext";
+import ProfileLogout from "./components/profileLogout/ProfileLogout";
+import ChatView from "./views/chatView/ChatView";
 
 function App() {
-
   return (
     <div className="App">
-        <PopUpContext>
-          <PagesContext>
+      <PopUpContext>
+        <PagesContext>
+          <UserContext>
             <Routes>
               <Route path="/" element={<LayoutMiddle />}>
                 <Route index element={<HomeView />} />
@@ -28,11 +31,14 @@ function App() {
                 <Route path="login" element={<LogInView />} />
                 <Route path="registration" element={<RegistrationView />} />
                 <Route path="home" element={<Home />} />
+                <Route path="profile" element={<ProfileLogout />} />
+                <Route path="chat" element={<ChatView />} />
                 <Route path="*" element={<NoPage />} />
               </Route>
             </Routes>
-          </PagesContext>
-        </PopUpContext>
+          </UserContext>
+        </PagesContext>
+      </PopUpContext>
     </div>
   );
 }
