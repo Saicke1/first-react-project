@@ -3,6 +3,7 @@ import "./BottomNavBar.css";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { BsFillChatRightDotsFill } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { userInfo } from "../useContext/UserContext";
 
@@ -47,11 +48,7 @@ const BottomNavBar = () => {
         </Link>
       ) : (
         <Link to="/login">
-          <img
-            className="imageKennyProfile"
-            src="./images/kenny.png"
-            alt="KennyProfile"
-          />
+          <BsFillPersonFill className="icons" />
         </Link>
       )}
     </div>
