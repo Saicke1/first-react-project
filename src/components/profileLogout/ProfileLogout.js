@@ -39,6 +39,7 @@ const ProfileLogout = () => {
       <h1>You are logged in, douchebag!</h1>
       <h4>You are also known as:</h4>
       {user?.email}
+      {user?.displayName}
       <p>{/* {each.firstname} {each.lastname} */}</p>
       <Link to="/login">
         <Button

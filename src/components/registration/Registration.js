@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 /* import { userInfo } from "../useContext/UserContext"; */
 import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase-config";
 
 const Registration = () => {
@@ -56,6 +56,7 @@ const Registration = () => {
 
   const [registerMail, setRegisterMail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [getName, setGetName] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -69,6 +70,8 @@ const Registration = () => {
         registerPassword
       );
       console.log(user);
+      /* auth.currentUser.displayName = getName; <- das ist auch möglich */
+      await updateProfile(auth.currentUser, { displayName: getName });
     } catch (error) {
       console.log(error.message);
     }
@@ -85,6 +88,9 @@ const Registration = () => {
             type="firstname"
             placeholder="First name"
             /* onChange={getFirstName} */
+            onChange={(event) => {
+              setGetName(event.target.value);
+            }}
           />
         </Form.Group>
 
