@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { /* useContext */ useState } from "react";
 import "./LogIn.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import { userInfo } from "../useContext/UserContext";
+/* import { userInfo } from "../useContext/UserContext"; */
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase-config";
 
 const LogIn = () => {
-  const [users, setUsers] = useContext(userInfo);
+  /* const [users, setUsers] = useContext(userInfo);
   let mail;
   let password;
 
@@ -35,6 +37,26 @@ const LogIn = () => {
         console.log("each", each);
       }
     });
+  }; */
+
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  const login = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -47,7 +69,10 @@ const LogIn = () => {
           <Form.Control
             type="email"
             placeholder="Enter email"
-            onChange={getMail}
+            /* onChange={getMail} */
+            onChange={(event) => {
+              setLoginEmail(event.target.value);
+            }}
           />
         </Form.Group>
 
@@ -56,7 +81,10 @@ const LogIn = () => {
           <Form.Control
             type="password"
             placeholder="Password"
-            onChange={getPassword}
+            /* onChange={getPassword} */
+            onChange={(event) => {
+              setLoginPassword(event.target.value);
+            }}
           />
           <Form.Text className="text-muted">
             Never share your password, douchebag!
@@ -69,7 +97,11 @@ const LogIn = () => {
           />
         </Form.Group>
         <Link to="/profile">
-          <Button variant="primary" type="submit" onClick={getValues}>
+          <Button
+            variant="primary"
+            type="submit"
+            /* onClick={getValues} */ onClick={login}
+          >
             Log in
           </Button>
         </Link>

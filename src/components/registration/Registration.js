@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { /* useContext, */ useState } from "react";
 import "./Registration.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { userInfo } from "../useContext/UserContext";
+/* import { userInfo } from "../useContext/UserContext"; */
 import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase-config";
 
 const Registration = () => {
-  const [users, setUsers] = useContext(userInfo);
+  /* const [users, setUsers] = useContext(userInfo);
   let firstName;
   let lastName;
   let email;
@@ -50,6 +52,27 @@ const Registration = () => {
     ]);
     console.log("users", users);
   };
+ */
+
+  const [registerMail, setRegisterMail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerMail,
+        registerPassword
+      );
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="registrationContainer">
@@ -61,7 +84,7 @@ const Registration = () => {
           <Form.Control
             type="firstname"
             placeholder="First name"
-            onChange={getFirstName}
+            /* onChange={getFirstName} */
           />
         </Form.Group>
 
@@ -69,7 +92,7 @@ const Registration = () => {
           <Form.Control
             type="lastname"
             placeholder="Last name"
-            onChange={getLastName}
+            /* onChange={getLastName} */
           />
         </Form.Group>
 
@@ -78,7 +101,10 @@ const Registration = () => {
           <Form.Control
             type="mail"
             placeholder="Enter email"
-            onChange={getMail}
+            /* onChange={getMail} */
+            onChange={(event) => {
+              setRegisterMail(event.target.value);
+            }}
           />
         </Form.Group>
 
@@ -91,7 +117,10 @@ const Registration = () => {
           <Form.Control
             type="repeatPassword"
             placeholder="Repeat Password"
-            onChange={getPassword}
+            /* onChange={getPassword} */
+            onChange={(event) => {
+              setRegisterPassword(event.target.value);
+            }}
           />
           <Form.Text className="text-muted">
             Don't look at me like that, it's needed!
@@ -102,7 +131,11 @@ const Registration = () => {
           <Form.Check type="checkbox" label="Check, so we can spam you!" />
         </Form.Group>
         <Link to="/profile">
-          <Button variant="primary" type="submit" onClick={addUser}>
+          <Button
+            variant="primary"
+            type="submit"
+            /* onClick={addUser} */ onClick={register}
+          >
             Create Account
           </Button>
         </Link>
