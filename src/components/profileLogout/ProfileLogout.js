@@ -1,10 +1,11 @@
-import React, { /* useContext  */ useState } from "react";
+import React, { useContext, useState } from "react";
 /* import { userInfo } from "../useContext/UserContext"; */
 import "./ProfileLogout.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../../firebase-config";
+/* import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../firebase-config"; */
+import { authContext } from "../useContext/UserAuthContext";
 
 const ProfileLogout = () => {
   /*   const [users] = useContext(userInfo);
@@ -19,16 +20,19 @@ const ProfileLogout = () => {
     });
   } */
 
-  const [user, setUser] = useState({});
+  const { user, logout } = useContext(authContext);
 
-  onAuthStateChanged(auth, (currentUser) => {
+  /* console.log("user", user); */
+
+  /* const [user, setUser] = useState({}); */
+
+  /*  onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-    console.log("user", user);
-  });
+  }); */
 
-  const logout = async () => {
+  /*   const logout = async () => {
     await signOut(auth);
-  };
+  }; */
 
   return (
     <div className="profileContainer">
@@ -37,9 +41,17 @@ const ProfileLogout = () => {
           return (
             <div key={each.userid}> */}
       <h1>You are logged in, douchebag!</h1>
+      <img
+        className="imgCartmanSize"
+        src="./images/cartmantalk.webp"
+        alt="cartmantalk"
+      />
       <h4>You are also known as:</h4>
+
       {user?.email}
+      <br></br>
       {user?.displayName}
+
       <p>{/* {each.firstname} {each.lastname} */}</p>
       <Link to="/login">
         <Button

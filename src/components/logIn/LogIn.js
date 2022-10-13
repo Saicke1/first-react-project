@@ -1,11 +1,12 @@
-import React, { /* useContext */ useState } from "react";
+import React, { useContext, useState } from "react";
 import "./LogIn.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-/* import { userInfo } from "../useContext/UserContext"; */
+import { authContext } from "../useContext/UserAuthContext";
+/* import { userInfo } from "../useContext/UserContext"; 
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase-config";
+import { auth } from "../../firebase-config"; */
 
 const LogIn = () => {
   /* const [users, setUsers] = useContext(userInfo);
@@ -39,6 +40,8 @@ const LogIn = () => {
     });
   }; */
 
+  const { signin } = useContext(authContext);
+
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -46,7 +49,11 @@ const LogIn = () => {
     e.preventDefault();
   }
 
-  const login = async () => {
+  const login = () => {
+    signin(loginEmail, loginPassword);
+  };
+
+  /* const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -57,7 +64,7 @@ const LogIn = () => {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }; */
 
   return (
     <div className="loginContainer">

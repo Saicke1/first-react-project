@@ -19,7 +19,8 @@ const Home = () => {
               "I know, I know, you can't wait to get started. But let me tell
               you this: If you don't log in, you will be demoted from douchebag
               to stupid douchebag. No kidding! That's even worse than killing
-              Kenny. All clear? Good! Now go!"
+              Kenny.<br></br>
+              All clear? Good! Now go!"
             </p>
 
             <Link to="/login">

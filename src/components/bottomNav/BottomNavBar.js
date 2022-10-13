@@ -1,34 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext /* , useState, useEffect */ } from "react";
 import "./BottomNavBar.css";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import { BsFillHouseDoorFill } from "react-icons/bs";
 import { BsFillChatRightDotsFill } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { userInfo } from "../useContext/UserContext";
+/* import { userInfo } from "../useContext/UserContext"; */
+import { authContext } from "../useContext/UserAuthContext";
 
 const BottomNavBar = () => {
+  const { isLoggedIn } = useContext(authContext);
   const navigate = useNavigate();
-  const [users] = useContext(userInfo);
-  let leadLogin = false;
+  /*const [leadLogin, setLeadLogin] = useState(false);
+  const [users] = useContext(userInfo); */
 
-  {
+  /*   {
     users &&
       users.map((each) => {
         if (each.state === true) {
           leadLogin = true;
         }
       });
-  }
+  } */
+
+  /* console.log("isLoggedIn", isLoggedIn); */
 
   return (
     <div className="navBar">
+      {console.log("infinite Loop?")}
       <BsFillCaretLeftFill onClick={() => navigate(-1)} className="icons" />
       <Link to="/home">
         <BsFillHouseDoorFill className="icons" />
       </Link>
 
-      {leadLogin ? (
+      {isLoggedIn ? (
         <Link to="/chat">
           <BsFillChatRightDotsFill className="icons" />
         </Link>
@@ -38,7 +43,7 @@ const BottomNavBar = () => {
         </Link>
       )}
 
-      {leadLogin ? (
+      {isLoggedIn ? (
         <Link to="/profile">
           <img
             className="imageKennyProfile"

@@ -13,32 +13,35 @@ import RegistrationView from "./views/registrationView/RegistrationView";
 import PopUpContext from "./components/useContext/PopUpContext";
 import PagesContext from "./components/useContext/PagesContext";
 import UserContext from "./components/useContext/UserContext";
+import UserAuthContext from "./components/useContext/UserAuthContext";
 import ProfileLogout from "./components/profileLogout/ProfileLogout";
 import ChatView from "./views/chatView/ChatView";
 
 function App() {
   return (
     <div className="App">
-      <PopUpContext>
-        <PagesContext>
-          <UserContext>
-            <Routes>
-              <Route path="/" element={<LayoutMiddle />}>
-                <Route index element={<HomeView />} />
-                <Route path="details" element={<DetailsView />} />
-                <Route path="episodes/:id" element={<DetailsScreen />} />
-                <Route path="listEpisodes" element={<DataEpi />} />
-                <Route path="login" element={<LogInView />} />
-                <Route path="registration" element={<RegistrationView />} />
-                <Route path="home" element={<Home />} />
-                <Route path="profile" element={<ProfileLogout />} />
-                <Route path="chat" element={<ChatView />} />
-                <Route path="*" element={<NoPage />} />
-              </Route>
-            </Routes>
-          </UserContext>
-        </PagesContext>
-      </PopUpContext>
+      <UserAuthContext>
+        <PopUpContext>
+          <PagesContext>
+            <UserContext>
+              <Routes>
+                <Route path="/" element={<LayoutMiddle />}>
+                  <Route index element={<HomeView />} />
+                  <Route path="details" element={<DetailsView />} />
+                  <Route path="episodes/:id" element={<DetailsScreen />} />
+                  <Route path="listEpisodes" element={<DataEpi />} />
+                  <Route path="login" element={<LogInView />} />
+                  <Route path="registration" element={<RegistrationView />} />
+                  <Route path="home" element={<Home />} />
+                  <Route path="profile" element={<ProfileLogout />} />
+                  <Route path="chat" element={<ChatView />} />
+                  <Route path="*" element={<NoPage />} />
+                </Route>
+              </Routes>
+            </UserContext>
+          </PagesContext>
+        </PopUpContext>
+      </UserAuthContext>
     </div>
   );
 }

@@ -1,11 +1,12 @@
-import React, { /* useContext, */ useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Registration.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 /* import { userInfo } from "../useContext/UserContext"; */
 import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../../firebase-config";
+/* import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../firebase-config"; */
+import { authContext } from "../useContext/UserAuthContext";
 
 const Registration = () => {
   /* const [users, setUsers] = useContext(userInfo);
@@ -54,15 +55,22 @@ const Registration = () => {
   };
  */
 
+  const { registerUser } = useContext(authContext);
+
   const [registerMail, setRegisterMail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  const [getName, setGetName] = useState("");
+  const [getFirstName, setGetFirstName] = useState("");
+  const [getLastName, setGetLastName] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
   }
 
-  const register = async () => {
+  const register = () => {
+    registerUser(registerMail, registerPassword, getFirstName, getLastName);
+  };
+
+  /* const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -70,13 +78,15 @@ const Registration = () => {
         registerPassword
       );
       console.log(user);
-      /* auth.currentUser.displayName = getName; <- das ist auch möglich */
-      await updateProfile(auth.currentUser, { displayName: getName });
+      // auth.currentUser.displayName = getFirstName + " " + getLastName; <- das ist auch möglich 
+      await updateProfile(auth.currentUser, {
+        displayName: getFirstName + " " + getLastName,
+      });
     } catch (error) {
       console.log(error.message);
     }
   };
-
+ */
   return (
     <div className="registrationContainer">
       <h1>Become a new douchebag!</h1>
@@ -89,7 +99,7 @@ const Registration = () => {
             placeholder="First name"
             /* onChange={getFirstName} */
             onChange={(event) => {
-              setGetName(event.target.value);
+              setGetFirstName(event.target.value);
             }}
           />
         </Form.Group>
@@ -99,6 +109,9 @@ const Registration = () => {
             type="lastname"
             placeholder="Last name"
             /* onChange={getLastName} */
+            onChange={(event) => {
+              setGetLastName(event.target.value);
+            }}
           />
         </Form.Group>
 

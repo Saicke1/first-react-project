@@ -2,12 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .homeContainer{
     padding: 10px;
     width: 95vw;
-    margin-left: 2.5vw;
     margin-top: 2vh;
     border: 2px solid #ee590f;
     border-radius: 3px;
