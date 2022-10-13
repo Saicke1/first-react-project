@@ -1,4 +1,19 @@
-.imageBannerSize{
+.postionImg{
+    background-color: #ee590f;
     width: 100%;
     height: auto;
+}
+
+.imageBannerSize{
+    max-width: 80%;
+    height: auto;
+}
+
+@media only screen and (min-width: 875px) {
+
+.imageBannerSize {
+        max-width: 484.34px;
+        height: auto;
+    }
+
 }
