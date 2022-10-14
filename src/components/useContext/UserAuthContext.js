@@ -52,21 +52,19 @@ const UserAuthContext = (props) => {
   const registerUser = (email, password /* , firstname, lastname */) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("userCredential", userCredential);
+        /* console.log("userCredential", userCredential); */
         // Signed in
-        console.log("userCredential", userCredential);
         const user = userCredential.user;
         console.log("user after register in the function register", user);
         setUser(user);
         setIsLoggedIn(true);
+        console.log("UserState after registration is set to loggedin", user);
         // ...
       })
-      .then((user) => {
+      .then(() => {
         updateProfile(auth.currentUser, {
-          displayName: "douchebag",
+          displayName: "Douchebag",
         });
-        setUser(user);
-        /* console.log("auth.currentUser", auth.currentUser); */
       })
       .catch((error) => {
         const errorCode = error.code;
