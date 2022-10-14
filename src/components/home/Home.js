@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Home.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { authContext } from "../useContext/UserAuthContext";
 
 const Home = () => {
+  const { isLoggedIn } = useContext(authContext);
+
   return (
     <div className="containerPosition">
       <div className="homeContainer">
@@ -22,10 +25,14 @@ const Home = () => {
               Kenny.<br></br>
               All clear? Good! Now go!"
             </p>
+            {isLoggedIn ? (
+              <></>
+            ) : (
+              <Link to="/login">
+                <Button variant="primary">Oh shit, I better log in!</Button>
+              </Link>
+            )}
 
-            <Link to="/login">
-              <Button variant="primary">Oh shit, I better log in!</Button>
-            </Link>
             <Link to="/listEpisodes">
               <Button variant="primary">
                 Don't care, show me the list of episodes!
