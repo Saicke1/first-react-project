@@ -16,6 +16,7 @@ import UserContext from "./components/useContext/UserContext";
 import UserAuthContext from "./components/useContext/UserAuthContext";
 import ProfileLogout from "./components/profileLogout/ProfileLogout";
 import ChatView from "./views/chatView/ChatView";
+import ChangeProfile from "./components/changeProfile/ChangeProfile";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                   <Route path="home" element={<Home />} />
                   <Route path="profile" element={<ProfileLogout />} />
                   <Route path="chat" element={<ChatView />} />
+                  <Route path="change" element={<ChangeProfile />} />
                   <Route path="*" element={<NoPage />} />
                 </Route>
               </Routes>

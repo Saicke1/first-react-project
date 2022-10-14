@@ -59,15 +59,13 @@ const Registration = () => {
 
   const [registerMail, setRegisterMail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  const [getFirstName, setGetFirstName] = useState("");
-  const [getLastName, setGetLastName] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
   }
 
   const register = () => {
-    registerUser(registerMail, registerPassword, getFirstName, getLastName);
+    registerUser(registerMail, registerPassword);
   };
 
   /* const register = async () => {
@@ -92,29 +90,6 @@ const Registration = () => {
       <h1>Become a new douchebag!</h1>
 
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-2" controlId="FirstName">
-          <Form.Label>First and Last name</Form.Label>
-          <Form.Control
-            type="firstname"
-            placeholder="First name"
-            /* onChange={getFirstName} */
-            onChange={(event) => {
-              setGetFirstName(event.target.value);
-            }}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="LastName">
-          <Form.Control
-            type="lastname"
-            placeholder="Last name"
-            /* onChange={getLastName} */
-            onChange={(event) => {
-              setGetLastName(event.target.value);
-            }}
-          />
-        </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control

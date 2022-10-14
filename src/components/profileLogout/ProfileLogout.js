@@ -1,70 +1,35 @@
-import React, { useContext, useState } from "react";
-/* import { userInfo } from "../useContext/UserContext"; */
+import React, { useContext } from "react";
 import "./ProfileLogout.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-/* import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../../firebase-config"; */
 import { authContext } from "../useContext/UserAuthContext";
 
 const ProfileLogout = () => {
-  /*   const [users] = useContext(userInfo);
-  console.log("users", users);
-
-  function logoutUser() {
-    users.map((user) => {
-      if (user.state === true) {
-        user.state = false;
-        console.log("user", user);
-      }
-    });
-  } */
-
   const { user, logout } = useContext(authContext);
 
   /* console.log("user", user); */
 
-  /* const [user, setUser] = useState({}); */
-
-  /*  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  }); */
-
-  /*   const logout = async () => {
-    await signOut(auth);
-  }; */
-
   return (
     <div className="profileContainer">
-      {/*    {users.map((each) => {
-        if (each.state === true) {
-          return (
-            <div key={each.userid}> */}
-      <h1>You are logged in, douchebag!</h1>
+      <h1>
+        You are logged in,<br></br>
+        {user?.displayName}!
+      </h1>
       <img
         className="imgCartmanSize"
         src="./images/cartmantalk.webp"
         alt="cartmantalk"
       />
-      <h4>You are also known as:</h4>
+      <h5>Well done, I'm proud of you.</h5>
 
-      {user?.email}
-      <br></br>
-      {user?.displayName}
-
-      <p>{/* {each.firstname} {each.lastname} */}</p>
+      <Link to="/change">
+        <Button variant="warning">Stop calling me that!</Button>
+      </Link>
       <Link to="/login">
-        <Button
-          variant="primary"
-          /* onClick={() => logoutUser()} */ onClick={logout}
-        >
+        <Button variant="primary" onClick={logout}>
           Logout
         </Button>
       </Link>
-      {/*  </div> 
-               );
-     }
-       })}  */}
     </div>
   );
 };
