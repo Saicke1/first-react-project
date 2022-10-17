@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   onAuthStateChanged,
+  deleteUser,
 } from "firebase/auth";
 
 export const authContext = createContext();
@@ -108,10 +109,32 @@ const UserAuthContext = (props) => {
       });
   };
 
+  const eraseUser = () => {
+    deleteUser(auth.currentUser)
+      .then(() => {
+        // User deleted.
+        setUser(null);
+        setIsLoggedIn(false);
+      })
+      .catch((error) => {
+        // An error ocurred
+        // ...
+        console.log("error.message", error.message);
+      });
+  };
+
   return (
     <div>
       <authContext.Provider
-        value={{ user, isLoggedIn, update, registerUser, signin, logout }}
+        value={{
+          user,
+          isLoggedIn,
+          update,
+          registerUser,
+          signin,
+          logout,
+          eraseUser,
+        }}
       >
         {props.children}
       </authContext.Provider>

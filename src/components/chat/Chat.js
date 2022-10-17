@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./Chat.css";
 import { authContext } from "../useContext/UserAuthContext";
-import Button from "react-bootstrap/Button";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase-config";
+import { auth, db } from "../../firebase-config";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
 
 const Chat = () => {
   const { user } = useContext(authContext);
@@ -51,20 +51,25 @@ const Chat = () => {
   return (
     <div className="chatContainer">
       <h1>Das ist der Chat! perfekt, du bist eingeloggt. :D</h1>
+      {console.log("auth.currentUser.email", auth.currentUser.email)}
+      <div className="messagePosition">
+        {chatMessages &&
+          chatMessages.map((msg, index) => (
+            <div key={index} className="oneMessageBox">
+              <p>{msg.name}</p>
+              <p>{msg.text}</p>
+              <p>{msg.time.toDate().toLocaleString("de")}</p>
+            </div>
+          ))}
+      </div>
 
-      {chatMessages &&
-        chatMessages.map((msg, index) => (
-          <div key={index} className="oneMessageBox">
-            <p>{msg.name}</p>
-            <p>{msg.text}</p>
-            <p>{msg.time.toDate().toLocaleString("de")}</p>
-          </div>
-        ))}
-
-      <input type="text" className="inputField" onChange={getMessage}></input>
-      <Button variant="primary" onClick={sendMessage}>
-        Send
-      </Button>
+      <div className="inputButtonPosition">
+        <input type="text" className="inputField" onChange={getMessage}></input>
+        <BsFillArrowRightCircleFill
+          className="sendArrow"
+          onClick={sendMessage}
+        />
+      </div>
     </div>
   );
 };

@@ -18,6 +18,12 @@
     color: black;
 }
 
+.houseIcon{
+    font-size: 40px;
+    cursor: pointer;
+    color: black;
+}
+
 .imageKennyProfile{
     width: 35px;
     height: 45px;

@@ -7,7 +7,7 @@ import { auth } from "../../firebase-config";
 import { updateCurrentUser } from "firebase/auth";
 
 const ProfileLogout = () => {
-  const { user, logout } = useContext(authContext);
+  const { user, logout, eraseUser } = useContext(authContext);
   const [show, setShow] = useState(false);
 
   console.log("The data of the user seen on the profile page.", user);
@@ -39,11 +39,14 @@ const ProfileLogout = () => {
       <Link to="/change">
         <Button variant="warning">Stop calling me that!</Button>
       </Link>
-      <Link to="/login">
+      <Link to="/login" className="logoutDeleteButtonsPosition">
         <Button variant="primary" onClick={logout}>
           Logout
         </Button>
       </Link>
+      <Button variant="primary" onClick={eraseUser}>
+        Delete my Account
+      </Button>
     </div>
   );
 };

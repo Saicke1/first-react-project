@@ -1,5 +1,4 @@
 .chatContainer{
-    padding: 10px;
     width: 95vw;
     margin-left: 2.5vw;
     margin-top: 2vh;
@@ -12,13 +11,35 @@
     gap: 10px;
 }
 
-.inputField{
-    border: 1px solid #ee590f;
-    border-radius: 3px;
+.messagePosition{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .oneMessageBox{
     background-color: #ee590f;
     border-radius: 3px;
-    padding: 0;
+    padding: 3px;
+}
+
+.inputButtonPosition{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+    padding: 5px;
+}
+
+.inputField {
+    border: 1px solid #ee590f;
+    border-radius: 3px;
+    min-height: 30px;
+    max-height: 200px;
+    width: 80%;
+}
+
+.sendArrow{
+    font-size: 40px;
+    color: #ee590f;
 }
