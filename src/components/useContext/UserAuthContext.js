@@ -14,6 +14,7 @@ export const authContext = createContext();
 const UserAuthContext = (props) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -32,7 +33,6 @@ const UserAuthContext = (props) => {
   }, []);
 
   const update = (firstname, lastname) => {
-    auth.currentUser.displayName = "";
     /* console.log("user name is deleted in update function", auth.currentUser); */
     updateProfile(auth.currentUser, {
       displayName: firstname + " " + lastname,
@@ -41,6 +41,7 @@ const UserAuthContext = (props) => {
         /* console.log("auth bei update function", auth);
         console.log("user bei update function", user); */
         setUser(user);
+        setUserName(firstname + " " + lastname);
         // Profile updated!
         // ...
       })
@@ -64,8 +65,9 @@ const UserAuthContext = (props) => {
       })
       .then(() => {
         updateProfile(auth.currentUser, {
-          displayName: "Douchebag",
+          displayName: "Douchebag" /* firstname + " " + lastname */,
         });
+        setUserName("Douchebag");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -83,6 +85,7 @@ const UserAuthContext = (props) => {
         const user = userCredential.user;
         setUser(user);
         setIsLoggedIn(true);
+        setUserName(user.displayName);
         console.log("Login was successful.");
         console.log(
           "This is the userCredential.user put in user when login",
@@ -129,6 +132,7 @@ const UserAuthContext = (props) => {
         value={{
           user,
           isLoggedIn,
+          userName,
           update,
           registerUser,
           signin,

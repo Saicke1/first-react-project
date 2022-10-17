@@ -59,13 +59,18 @@ const Registration = () => {
 
   const [registerMail, setRegisterMail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  /*   const [getFirstName, setGetFirstName] = useState("");
+  const [getLastName, setGetLastName] = useState(""); */
 
   function handleSubmit(e) {
     e.preventDefault();
   }
 
   const register = () => {
-    registerUser(registerMail, registerPassword);
+    registerUser(
+      registerMail,
+      registerPassword /* , getFirstName, getLastName */
+    );
   };
 
   /* const register = async () => {
@@ -101,6 +106,27 @@ const Registration = () => {
             }}
           />
         </Form.Group>
+
+        {/* <Form.Group className="mb-2" controlId="FirstName">
+          <Form.Label>First and Last Name</Form.Label>
+          <Form.Control
+            type="firstname"
+            placeholder="First name"
+            onChange={(event) => {
+              setGetFirstName(event.target.value);
+            }}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="LastName">
+          <Form.Control
+            type="lastname"
+            placeholder="Last name"
+            onChange={(event) => {
+              setGetLastName(event.target.value);
+            }}
+          />
+        </Form.Group> */}
 
         <Form.Group className="mb-2" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
