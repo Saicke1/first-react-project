@@ -3,9 +3,7 @@ import "./ProfileLogout.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { authContext } from "../useContext/UserAuthContext";
-import Badge from "react-bootstrap/Badge";
 import { auth } from "../../firebase-config";
-import { updateCurrentUser } from "firebase/auth";
 
 const ProfileLogout = () => {
   const { user, userName, logout } = useContext(authContext);
@@ -39,7 +37,7 @@ const ProfileLogout = () => {
       <h2>
         You are logged in,<br></br>
       </h2>
-      <h2 className="badgeStyle">{userName ? userName : dummyName}</h2>
+      <h2 className="nameBadgeStyle">{userName ? userName : dummyName}</h2>
       {userName !== "Douchebag" ? (
         <small style={{ marginTop: -15 }}>
           "You still will be an Douchebag for me."
@@ -59,18 +57,20 @@ const ProfileLogout = () => {
       <h5>"Well done, I'm proud of you."</h5>
 
       <Link to="/change">
-        <Button variant="warning">Update Account</Button>
+        <Button style={{ backgroundColor: "#ee590f" }}>Update Account</Button>
       </Link>
-      <Link to="/login" className="logoutDeleteButtonsPosition">
-        <Button variant="primary" onClick={logout}>
-          Logout
-        </Button>
-      </Link>
-      <Link to="/erasing">
-        <Button variant="primary" className="deleteBtn">
-          Delete my Account
-        </Button>
-      </Link>
+      <div className="logoutDeleteBtn">
+        <Link to="/login" className="logoutDeleteButtonsPosition">
+          <Button style={{ backgroundColor: "#0FA4EE" }} onClick={logout}>
+            Logout
+          </Button>
+        </Link>
+        <Link to="/erasing">
+          <Button variant="primary" className="deleteBtn">
+            Delete my Account
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

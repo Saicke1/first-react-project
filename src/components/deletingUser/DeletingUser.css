@@ -11,3 +11,8 @@
     margin-bottom: 85px;
     gap: 10px;
 }
+
+.imageCartmanSize{
+    max-width: 620px;
+    height: auto;
+}

@@ -9,10 +9,19 @@ const DeletingUser = () => {
 
   return (
     <div className="deleteContainer">
-      Are you sure you want to logout?
+      <h1>"You can't be serious!"</h1>
+      <img
+        className="imageCartmanSize"
+        src="./images/cartmanAngry.webp"
+        alt="CartmanAngry"
+      />
+      <h5>
+        "If you delete yourself now, you will never get access to this page
+        again! Even worse, you will kill Kenny!"
+      </h5>
       <Link to="/home">
-        <Button variant="primary" onClick={eraseUser}>
-          Yes, I'm sure.
+        <Button style={{ backgroundColor: "#bd022c" }} onClick={eraseUser}>
+          Please delete my Account
         </Button>
       </Link>
     </div>
