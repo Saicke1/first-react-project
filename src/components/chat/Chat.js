@@ -51,7 +51,7 @@ const Chat = () => {
   return (
     <div className="chatContainer">
       <h1>Das ist der Chat! perfekt, du bist eingeloggt. :D</h1>
-      {console.log("auth.currentUser.email", auth.currentUser.email)}
+      {/* {console.log("auth.currentUser.email", auth.currentUser.email)} */}
       <div className="messagePosition">
         {chatMessages &&
           chatMessages.map((msg, index) => (

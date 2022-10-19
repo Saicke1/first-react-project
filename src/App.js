@@ -18,33 +18,36 @@ import ProfileLogout from "./components/profileLogout/ProfileLogout";
 import ChatView from "./views/chatView/ChatView";
 import ChangeProfile from "./components/changeProfile/ChangeProfile";
 import DeletingUser from "./components/deletingUser/DeletingUser";
+import FavoriteContext from "./components/useContext/FavoriteContext";
 
 function App() {
   return (
     <div className="App">
       <UserAuthContext>
-        <PopUpContext>
-          <PagesContext>
-            <UserContext>
-              <Routes>
-                <Route path="/" element={<LayoutMiddle />}>
-                  <Route index element={<HomeView />} />
-                  <Route path="details" element={<DetailsView />} />
-                  <Route path="episodes/:id" element={<DetailsScreen />} />
-                  <Route path="listEpisodes" element={<DataEpi />} />
-                  <Route path="login" element={<LogInView />} />
-                  <Route path="registration" element={<RegistrationView />} />
-                  <Route path="home" element={<Home />} />
-                  <Route path="profile" element={<ProfileLogout />} />
-                  <Route path="chat" element={<ChatView />} />
-                  <Route path="change" element={<ChangeProfile />} />
-                  <Route path="erasing" element={<DeletingUser />} />
-                  <Route path="*" element={<NoPage />} />
-                </Route>
-              </Routes>
-            </UserContext>
-          </PagesContext>
-        </PopUpContext>
+        <FavoriteContext>
+          <PopUpContext>
+            <PagesContext>
+              <UserContext>
+                <Routes>
+                  <Route path="/" element={<LayoutMiddle />}>
+                    <Route index element={<HomeView />} />
+                    <Route path="details" element={<DetailsView />} />
+                    <Route path="episodes/:id" element={<DetailsScreen />} />
+                    <Route path="listEpisodes" element={<DataEpi />} />
+                    <Route path="login" element={<LogInView />} />
+                    <Route path="registration" element={<RegistrationView />} />
+                    <Route path="home" element={<Home />} />
+                    <Route path="profile" element={<ProfileLogout />} />
+                    <Route path="chat" element={<ChatView />} />
+                    <Route path="change" element={<ChangeProfile />} />
+                    <Route path="erasing" element={<DeletingUser />} />
+                    <Route path="*" element={<NoPage />} />
+                  </Route>
+                </Routes>
+              </UserContext>
+            </PagesContext>
+          </PopUpContext>
+        </FavoriteContext>
       </UserAuthContext>
     </div>
   );
