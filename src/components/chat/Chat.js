@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import "./Chat.css";
 import { authContext } from "../useContext/UserAuthContext";
 import { addDoc, collection, getDocs } from "firebase/firestore";
@@ -10,6 +10,7 @@ const Chat = () => {
   console.log("user", user);
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
+  const divRef = useRef(null);
 
   const getMessage = (e) => {
     setMessage(e.target.value);
@@ -21,6 +22,7 @@ const Chat = () => {
       name: user.displayName,
       text: message,
       time: new Date(),
+      userId: user.uid,
     });
     console.log("Document and message have the id:", docRef.id);
     getWholeChat();
@@ -48,6 +50,10 @@ const Chat = () => {
     getWholeChat();
   }, []);
 
+  useEffect(() => {
+    divRef.current.scrollIntoView({ behavior: "smooth" });
+  });
+
   return (
     <div className="chatContainer">
       <h1>Das ist der Chat! perfekt, du bist eingeloggt. :D</h1>
@@ -56,6 +62,7 @@ const Chat = () => {
         {chatMessages &&
           chatMessages.map((msg, index) => (
             <div key={index} className="oneMessageBox">
+              {console.log("msg", msg)}
               <p>{msg.name}</p>
               <p>{msg.text}</p>
               <p>{msg.time.toDate().toLocaleString("de")}</p>
@@ -70,6 +77,7 @@ const Chat = () => {
           onClick={sendMessage}
         />
       </div>
+      <div ref={divRef} />
     </div>
   );
 };

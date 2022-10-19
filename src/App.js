@@ -19,6 +19,7 @@ import ChatView from "./views/chatView/ChatView";
 import ChangeProfile from "./components/changeProfile/ChangeProfile";
 import DeletingUser from "./components/deletingUser/DeletingUser";
 import FavoriteContext from "./components/useContext/FavoriteContext";
+import UsersFavList from "./components/usersFavList/UsersFavList";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                     <Route path="chat" element={<ChatView />} />
                     <Route path="change" element={<ChangeProfile />} />
                     <Route path="erasing" element={<DeletingUser />} />
+                    <Route path="favorites" element={<UsersFavList />} />
                     <Route path="*" element={<NoPage />} />
                   </Route>
                 </Routes>

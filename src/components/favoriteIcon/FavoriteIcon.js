@@ -8,33 +8,23 @@ import { favContext } from "../useContext/FavoriteContext";
 
 const FavoriteIcon = (props) => {
   const { addFavorite, removeFavorite } = useContext(favContext);
-  const [favorite, setFavorite] = useState(false);
   const [memoryFavs, setMemoryFavs] = useState([]);
   const { id, thumbnail, episodeName, season, episode } = props;
   const { user } = useContext(authContext);
   const userID = user.uid;
 
-  /*   const toggleFav = () => {
-    setFavorite(!favorite);
-    console.log("favorite", favorite);
-    if (favorite === true) {
-      addFavorite(userID, id, thumbnail, episodeName, season, episode);
-    } else {
-      removeFavorite(userID, id);
-    }
-    checkFavorites();
-  }; */
-
-  const addFav = async () => {
-    /* setFavorite(true); */
+  const addFav = async (id) => {
     await addFavorite(userID, id, thumbnail, episodeName, season, episode);
     checkFavorites();
   };
 
-  const removeFav = async () => {
-    /* setFavorite(false); */
-    await removeFavorite(userID, id);
-    checkFavorites();
+  const removeFav = async (id) => {
+    const success = await removeFavorite(userID, id);
+    if (success) {
+      checkFavorites();
+    } else {
+      console.log("remove Fav was not synchron or a failure and false!");
+    }
   };
 
   const checkFavorites = async () => {
@@ -44,38 +34,32 @@ const FavoriteIcon = (props) => {
     const array = [];
     allFavorites.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+      /* console.log(doc.id, " => ", doc.data()); */
       const turnIntoNumber = +doc.id;
-      /* console.log("turnIntoNumber", turnIntoNumber); */
       array.push(turnIntoNumber);
     });
     console.log("array", array);
-    setMemoryFavs(array);
+    array.length && setMemoryFavs(array);
   };
 
   useEffect(() => {
     checkFavorites();
   }, []);
 
+  // if (memoryFavs.length === 0) {
+  //   return <BsBookmarkHeart className="favIcon" onClick={addFav} />;
+  // }
+  console.log("memoryFavs", memoryFavs);
   return (
     <div>
-      {memoryFavs &&
-        memoryFavs.map((each) => {
-          /* console.log("each", each); */
-          if (each === id) {
-            return (
-              <BsBookmarkHeartFill className="favIcon" onClick={removeFav} />
-            );
-          } else {
-            return <BsBookmarkHeart className="favIcon" onClick={addFav} />;
-          }
-        })}
-
-      {/* {favorite ? (
-        <BsBookmarkHeartFill className="favIcon" onClick={removeFav} />
+      {memoryFavs.includes(id) ? (
+        <BsBookmarkHeartFill
+          className="favIcon"
+          onClick={() => removeFav(id)}
+        />
       ) : (
-        <BsBookmarkHeart className="favIcon" onClick={addFav} />
-      )} */}
+        <BsBookmarkHeart className="favIcon" onClick={() => addFav(id)} />
+      )}
     </div>
   );
 };

@@ -24,10 +24,13 @@ const FavoriteContext = (props) => {
     season,
     episode
   ) => {
+    console.log("ADD Fav wurde geklickt.");
     const newId = await id.toString();
     const usersRef = await doc(db, "users", userID, "Favorites", newId);
     /* const usersRefID = doc(db, "users", userID); */
     const docSnap = await getDoc(usersRef);
+
+    console.log("id", id);
 
     if (docSnap.exists()) {
       console.log("Document exist already:", docSnap.data());
@@ -37,19 +40,26 @@ const FavoriteContext = (props) => {
       console.log("id", id);
       console.log("typeof id", typeof id); */
 
-      setDoc(doc(db, "users", userID, "Favorites", newId), {
-        id: { id },
-        episodeName: { episodeName },
-        thumbnail: { thumbnail },
-        season: { season },
-        episode: { episode },
+      await setDoc(doc(db, "users", userID, "Favorites", newId), {
+        id: id,
+        episodeName: episodeName,
+        thumbnail: thumbnail,
+        season: season,
+        episode: episode,
       });
     }
   };
 
   const removeFavorite = async (userID, id) => {
-    const newId = await id.toString();
-    await deleteDoc(doc(db, "users", userID, "Favorites", newId));
+    try {
+      console.log("remove Fav wurde geklickt.");
+      const newId = await id.toString();
+      await deleteDoc(doc(db, "users", userID, "Favorites", newId));
+      return true;
+    } catch (error) {
+      console.log("error.message", error.message);
+      return false;
+    }
   };
 
   return (

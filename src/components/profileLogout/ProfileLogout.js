@@ -3,7 +3,7 @@ import "./ProfileLogout.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { authContext } from "../useContext/UserAuthContext";
-import { auth } from "../../firebase-config";
+import { BsBorderWidth } from "react-icons/bs";
 
 const ProfileLogout = () => {
   const { user, userName, logout } = useContext(authContext);
@@ -12,28 +12,11 @@ const ProfileLogout = () => {
   console.log("The data of the user seen on the profile page.", user);
 
   const dummyName = "Douchebag";
-  /*   useEffect(() => {
-    if (user != null && user.displayName != null) {
-      setShow(user.displayName);
-    }
-  }, [user]); */
-  /* 
-  const thisUser = auth.currentUser;
-
-  if (thisUser !== null) {
-    user.providerData.forEach((profile) => {
-      console.log("Sign-in provider: " + profile.providerId);
-      console.log("  Provider-specific UID: " + profile.uid);
-      console.log("  Name: " + profile.displayName);
-      console.log("  Email: " + profile.email);
-      console.log("  Photo URL: " + profile.photoURL);
-    });
-  } */
-
   console.log("userName", userName);
 
   return (
     <div className="profileContainer">
+      <BsBorderWidth className="optionBars" />
       <h2>
         You are logged in,<br></br>
       </h2>
@@ -58,6 +41,9 @@ const ProfileLogout = () => {
 
       <Link to="/change">
         <Button style={{ backgroundColor: "#ee590f" }}>Update Account</Button>
+      </Link>
+      <Link to="/favorites">
+        <Button style={{ backgroundColor: "#0FA4EE" }}>Favoritelist</Button>
       </Link>
       <div className="logoutDeleteBtn">
         <Link to="/login" className="logoutDeleteButtonsPosition">

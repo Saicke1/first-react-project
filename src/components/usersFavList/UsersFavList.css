@@ -1,0 +1,13 @@
+.favListContainer{
+    padding: 10px;
+        width: 95vw;
+        margin-left: 2.5vw;
+        margin-top: 2vh;
+        border: 2px solid #ee590f;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 85px;
+        gap: 10px;
+}
