@@ -5,6 +5,8 @@ import { db } from "../../firebase-config";
 import { authContext } from "../useContext/UserAuthContext";
 import Button from "react-bootstrap/Button";
 import { favContext } from "../useContext/FavoriteContext";
+import Toast from "react-bootstrap/Toast";
+import { BsBookmarkDash } from "react-icons/bs";
 
 const UsersFavList = () => {
   const { user } = useContext(authContext);
@@ -39,19 +41,29 @@ const UsersFavList = () => {
 
   return (
     <div className="favListContainer">
-      <h1>This is the Favorite-List.</h1>
-      <div>
+      {/* {console.log("each", each)} */}
+      <div className="titleBox">
+        <h1 style={{ margin: 0 }}>My Favorites</h1>
+      </div>
+      <div className="allToastContainer">
         {favorites &&
           favorites.map((each, index) => (
             <div key={index}>
-              {console.log("each", each)}
-              <p>Episode: {each.episodeName}</p>
-              <p>
-                Season: {each.season} / Episode: {each.episode}
-              </p>
-              <Button variant="primary" onClick={() => removing(each.id)}>
-                Remove from list
-              </Button>
+              <Toast className="toastBody">
+                <Toast.Header>
+                  <strong className="me-auto">{each.episodeName}</strong>
+                  <BsBookmarkDash
+                    className="removeIcon"
+                    onClick={() => removing(each.id)}
+                  />
+                </Toast.Header>
+                <div className="toastTextPosition">
+                  <small className="smallFontStyle">
+                    Season: {each.season} / Episode: {each.episode}
+                  </small>
+                  <Toast.Body>{each.description}</Toast.Body>
+                </div>
+              </Toast>
             </div>
           ))}
       </div>

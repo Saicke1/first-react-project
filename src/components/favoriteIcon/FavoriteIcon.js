@@ -9,12 +9,20 @@ import { favContext } from "../useContext/FavoriteContext";
 const FavoriteIcon = (props) => {
   const { addFavorite, removeFavorite } = useContext(favContext);
   const [memoryFavs, setMemoryFavs] = useState([]);
-  const { id, thumbnail, episodeName, season, episode } = props;
+  const { id, thumbnail, episodeName, season, episode, description } = props;
   const { user } = useContext(authContext);
   const userID = user.uid;
 
   const addFav = async (id) => {
-    await addFavorite(userID, id, thumbnail, episodeName, season, episode);
+    await addFavorite(
+      userID,
+      id,
+      thumbnail,
+      episodeName,
+      season,
+      episode,
+      description
+    );
     checkFavorites();
   };
 

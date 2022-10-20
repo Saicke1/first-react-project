@@ -22,7 +22,8 @@ const FavoriteContext = (props) => {
     thumbnail,
     episodeName,
     season,
-    episode
+    episode,
+    description
   ) => {
     console.log("ADD Fav wurde geklickt.");
     const newId = await id.toString();
@@ -46,6 +47,7 @@ const FavoriteContext = (props) => {
         thumbnail: thumbnail,
         season: season,
         episode: episode,
+        description: description,
       });
     }
   };

@@ -66,6 +66,7 @@ const ListEpisodes = ({ epi }) => {
                   episodeName={each.name}
                   season={each.season}
                   episode={each.episode}
+                  description={each.description}
                 />
               </Card>
             );
