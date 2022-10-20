@@ -3,7 +3,6 @@ import "./UsersFavList.css";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase-config";
 import { authContext } from "../useContext/UserAuthContext";
-import Button from "react-bootstrap/Button";
 import { favContext } from "../useContext/FavoriteContext";
 import Toast from "react-bootstrap/Toast";
 import { BsBookmarkDash } from "react-icons/bs";
@@ -51,10 +50,17 @@ const UsersFavList = () => {
             <div key={index}>
               <Toast className="toastBody">
                 <Toast.Header>
-                  <strong className="me-auto">{each.episodeName}</strong>
-                  <BsBookmarkDash
-                    className="removeIcon"
-                    onClick={() => removing(each.id)}
+                  <div className="toastHeadText">
+                    <strong className="me-auto">{each.episodeName}</strong>
+                    <BsBookmarkDash
+                      className="removeIcon"
+                      onClick={() => removing(each.id)}
+                    />
+                  </div>
+                  <img
+                    referrerPolicy="no-referrer"
+                    src={each.thumbnail}
+                    className="imgSize"
                   />
                 </Toast.Header>
                 <div className="toastTextPosition">

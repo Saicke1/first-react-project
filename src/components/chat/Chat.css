@@ -11,16 +11,64 @@
     gap: 10px;
 }
 
+.titleChat{
+    background-color: #ee590f;
+    border-radius: 3px;
+    width: 95%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
 .messagePosition{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    width: 100%;
 }
 
-.oneMessageBox{
-    background-color: #ee590f;
-    border-radius: 3px;
-    padding: 3px;
+.message-me{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
+}
+
+.message-other{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 4px;
+}
+
+.card-header-me{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: lightgreen;
+    text-align: right;
+}
+
+.card-header-other{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: lightcoral;
+    text-align: left;
+}
+
+.smallTime {
+    font-size: smaller;
+}
+
+.message-text-me{
+    text-align: right;
+}
+
+.message-text-other{
+    text-align: left;
 }
 
 .inputButtonPosition{
@@ -29,6 +77,7 @@
     gap: 10px;
     width: 90%;
     padding: 5px;
+    border-top: 2px solid lightcoral;
 }
 
 .inputField {

@@ -36,11 +36,6 @@ const FavoriteContext = (props) => {
     if (docSnap.exists()) {
       console.log("Document exist already:", docSnap.data());
     } else {
-      /*   console.log("userID", userID);
-      console.log("typeof userID", typeof userID);
-      console.log("id", id);
-      console.log("typeof id", typeof id); */
-
       await setDoc(doc(db, "users", userID, "Favorites", newId), {
         id: id,
         episodeName: episodeName,

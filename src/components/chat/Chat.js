@@ -2,8 +2,10 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import "./Chat.css";
 import { authContext } from "../useContext/UserAuthContext";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import { auth, db } from "../../firebase-config";
+import { db } from "../../firebase-config";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const Chat = () => {
   const { user } = useContext(authContext);
@@ -56,16 +58,42 @@ const Chat = () => {
 
   return (
     <div className="chatContainer">
-      <h1>Das ist der Chat! perfekt, du bist eingeloggt. :D</h1>
-      {/* {console.log("auth.currentUser.email", auth.currentUser.email)} */}
+      <h1 className="titleChat">Chat</h1>
       <div className="messagePosition">
         {chatMessages &&
           chatMessages.map((msg, index) => (
-            <div key={index} className="oneMessageBox">
-              {console.log("msg", msg)}
-              <p>{msg.name}</p>
-              <p>{msg.text}</p>
-              <p>{msg.time.toDate().toLocaleString("de")}</p>
+            <div
+              key={index}
+              className={
+                msg.userId.includes(user.uid) ? "message-me" : "message-other"
+              }
+            >
+              {/* {console.log("msg", msg)} */}
+              <Card style={{ width: "18rem" }}>
+                <Card.Header
+                  className={
+                    msg.userId.includes(user.uid)
+                      ? "card-header-me"
+                      : "card-header-other"
+                  }
+                >
+                  {msg.name}{" "}
+                  <span className="smallTime">
+                    {msg.time.toDate().toLocaleString("de")}
+                  </span>
+                </Card.Header>
+                <ListGroup variant="flush">
+                  <ListGroup.Item
+                    className={
+                      msg.userId.includes(user.uid)
+                        ? "message-text-me"
+                        : "message-text-other"
+                    }
+                  >
+                    {msg.text}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
             </div>
           ))}
       </div>
