@@ -29,12 +29,14 @@ const Home = () => {
               <></>
             ) : (
               <Link to="/login">
-                <Button variant="primary">Oh shit, I better log in!</Button>
+                <Button variant="primary" className="loginBtn">
+                  Oh shit, I better log in!
+                </Button>
               </Link>
             )}
 
             <Link to="/listEpisodes">
-              <Button variant="primary">
+              <Button style={{ backgroundColor: "#0FA4EE" }}>
                 Don't care, show me the list of episodes!
               </Button>
             </Link>
