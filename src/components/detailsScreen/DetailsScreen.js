@@ -7,7 +7,6 @@ const DetailsScreen = () => {
   const charaIds = [];
   let germanDate;
   const { id } = useParams();
-  /*   console.log('id', id) */
   const url = `https://spapi.dev/api/episodes/${id}`;
   const [detailEpisode, setDetailEpisode] = useState();
 
@@ -31,16 +30,13 @@ const DetailsScreen = () => {
 
   if (detailEpisode) {
     detailEpisode.characters.map((each) => {
-      /* console.log('each', each) */
       const Id = Number(each.substring(each.lastIndexOf("/") + 1));
       charaIds.push(Id);
-      /* console.log('charaIds', charaIds) */
     });
   }
 
   return (
     <div className="detailContainer">
-      {/* <h1>{detailEpisode?.name ?? "Not loaded yet"}</h1> */}
       {detailEpisode ? (
         <>
           <h1>{detailEpisode.name}</h1>
@@ -56,7 +52,6 @@ const DetailsScreen = () => {
         "Not loaded yet"
       )}
       <Character ids={charaIds} />
-      {/* {console.log("infinite?")} */}
     </div>
   );
 };

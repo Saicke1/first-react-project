@@ -46,7 +46,6 @@ const FavoriteIcon = (props) => {
       const turnIntoNumber = +doc.id;
       array.push(turnIntoNumber);
     });
-    console.log("array", array);
     array.length && setMemoryFavs(array);
   };
 
@@ -54,9 +53,6 @@ const FavoriteIcon = (props) => {
     checkFavorites();
   }, []);
 
-  // if (memoryFavs.length === 0) {
-  //   return <BsBookmarkHeart className="favIcon" onClick={addFav} />;
-  // }
   console.log("memoryFavs", memoryFavs);
   return (
     <div>

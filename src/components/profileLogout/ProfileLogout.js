@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./ProfileLogout.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
@@ -8,7 +8,6 @@ import Accordion from "react-bootstrap/Accordion";
 
 const ProfileLogout = () => {
   const { user, userName, logout } = useContext(authContext);
-  /*   const [show, setShow] = useState(""); */
 
   console.log("The data of the user seen on the profile page.", user);
 
@@ -17,6 +16,14 @@ const ProfileLogout = () => {
 
   return (
     <div className="profileContainer">
+      <div className="profilePicPosition">
+        <img
+          src="./images/ericCartman.png"
+          alt="Avatar"
+          className="profilePic"
+        />
+      </div>
+
       <Accordion defaultActiveKey="0" className="accordion">
         <Accordion.Item eventKey="1">
           <Accordion.Header>
@@ -53,10 +60,6 @@ const ProfileLogout = () => {
       ) : (
         <></>
       )}
-      {/* <br></br>
-      <h1>
-        {user && user.email}!<br></br>
-      </h1> */}
       <img
         className="imgCartmanSize"
         src="./images/cartmantalk.webp"

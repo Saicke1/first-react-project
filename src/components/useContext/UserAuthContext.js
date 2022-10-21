@@ -19,11 +19,10 @@ const UserAuthContext = (props) => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        /* console.log("auth variable in useEffect", auth);
-        console.log("user variable in useEffect", user); */
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         setUser(user);
+        setUserName(user.displayName);
         setIsLoggedIn(true);
       } else {
         // User is signed out
@@ -38,8 +37,6 @@ const UserAuthContext = (props) => {
       displayName: firstname + " " + lastname,
     })
       .then(() => {
-        /* console.log("auth bei update function", auth);
-        console.log("user bei update function", user); */
         setUser(user);
         setUserName(firstname + " " + lastname);
         // Profile updated!
@@ -51,7 +48,7 @@ const UserAuthContext = (props) => {
       });
   };
 
-  const registerUser = (email, password /* , firstname, lastname */) => {
+  const registerUser = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         /* console.log("userCredential", userCredential); */
@@ -65,7 +62,7 @@ const UserAuthContext = (props) => {
       })
       .then(() => {
         updateProfile(auth.currentUser, {
-          displayName: "Douchebag" /* firstname + " " + lastname */,
+          displayName: "Douchebag",
         });
         setUserName("Douchebag");
       })

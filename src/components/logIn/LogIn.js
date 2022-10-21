@@ -4,42 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { authContext } from "../useContext/UserAuthContext";
-/* import { userInfo } from "../useContext/UserContext"; 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase-config"; */
 
 const LogIn = () => {
-  /* const [users, setUsers] = useContext(userInfo);
-  let mail;
-  let password;
-
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
-
-  const getMail = (event) => {
-    console.log("get mail", event.target.value);
-    mail = event.target.value;
-    return mail;
-  };
-
-  const getPassword = (event) => {
-    console.log("get password", event.target.value);
-    password = event.target.value;
-    return password;
-  };
-
-  const getValues = () => {
-    console.log("mail", mail);
-    console.log("password", password);
-    users.map((each) => {
-      if (mail === each.mail && password === each.password) {
-        each.state = true;
-        console.log("each", each);
-      }
-    });
-  }; */
-
   const { signin } = useContext(authContext);
 
   const [loginEmail, setLoginEmail] = useState("");
@@ -53,19 +19,6 @@ const LogIn = () => {
     signin(loginEmail, loginPassword);
   };
 
-  /* const login = async () => {
-    try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      console.log(user);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }; */
-
   return (
     <div className="loginContainer">
       <h1>Log in already, douchebag!</h1>
@@ -76,7 +29,6 @@ const LogIn = () => {
           <Form.Control
             type="email"
             placeholder="Enter email"
-            /* onChange={getMail} */
             onChange={(event) => {
               setLoginEmail(event.target.value);
             }}
@@ -88,7 +40,6 @@ const LogIn = () => {
           <Form.Control
             type="password"
             placeholder="Password"
-            /* onChange={getPassword} */
             onChange={(event) => {
               setLoginPassword(event.target.value);
             }}
@@ -104,11 +55,7 @@ const LogIn = () => {
           />
         </Form.Group>
         <Link to="/profile">
-          <Button
-            variant="primary"
-            type="submit"
-            /* onClick={getValues} */ onClick={login}
-          >
+          <Button variant="primary" type="submit" onClick={login}>
             Log in
           </Button>
         </Link>

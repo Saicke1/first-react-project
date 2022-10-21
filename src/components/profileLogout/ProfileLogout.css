@@ -13,6 +13,22 @@
     gap: 10px;
 }
 
+.profilePicPosition{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 5px;
+}
+
+.profilePic{
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid 1px lightgray;
+}
+
 .accordion{
     position: absolute;
     top: 0;

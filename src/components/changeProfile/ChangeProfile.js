@@ -28,7 +28,6 @@ const ChangeProfile = () => {
           <Form.Control
             type="firstname"
             placeholder="Update First name"
-            /* onChange={getFirstName} */
             onChange={(event) => {
               setGetFirstName(event.target.value);
             }}
@@ -39,7 +38,6 @@ const ChangeProfile = () => {
           <Form.Control
             type="lastname"
             placeholder="Update Last name"
-            /* onChange={getLastName} */
             onChange={(event) => {
               setGetLastName(event.target.value);
             }}

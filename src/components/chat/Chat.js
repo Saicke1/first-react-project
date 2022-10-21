@@ -45,7 +45,6 @@ const Chat = () => {
       (objA, objB) => Number(objA.time) - Number(objB.time)
     );
     setChatMessages(sortedArray);
-    /* console.log("Array in chatMessages", chatMessages); */
   };
 
   useEffect(() => {

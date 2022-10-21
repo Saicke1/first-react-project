@@ -20,6 +20,7 @@ import ChangeProfile from "./components/changeProfile/ChangeProfile";
 import DeletingUser from "./components/deletingUser/DeletingUser";
 import FavoriteContext from "./components/useContext/FavoriteContext";
 import UsersFavList from "./components/usersFavList/UsersFavList";
+import DeletedUser from "./components/deletedUser/DeletedUser";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
                     <Route path="change" element={<ChangeProfile />} />
                     <Route path="erasing" element={<DeletingUser />} />
                     <Route path="favorites" element={<UsersFavList />} />
+                    <Route path="deleted" element={<DeletedUser />} />
                     <Route path="*" element={<NoPage />} />
                   </Route>
                 </Routes>

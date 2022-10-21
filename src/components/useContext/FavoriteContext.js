@@ -8,6 +8,8 @@ import {
   collection,
   getDocs,
   deleteDoc,
+  query,
+  where,
 } from "firebase/firestore";
 
 export const favContext = createContext();
@@ -49,7 +51,7 @@ const FavoriteContext = (props) => {
 
   const removeFavorite = async (userID, id) => {
     try {
-      console.log("remove Fav wurde geklickt.");
+      console.log("remove Fav was clicked.");
       const newId = await id.toString();
       await deleteDoc(doc(db, "users", userID, "Favorites", newId));
       return true;
@@ -59,9 +61,37 @@ const FavoriteContext = (props) => {
     }
   };
 
+  const removeAllFavorites = async (userID) => {
+    try {
+      console.log("Remove all Favs was clicked.");
+      /* console.log("userID", userID); */
+
+      /*  const docsSnap = await getDocs(
+        collection(db, "users", userID, "Favorites")
+      );
+
+      docsSnap.forEach((each) => {
+        console.log(each.data());
+        deleteDoc(doc(each));
+        console.log("Doc is deleted."); 
+      });
+
+      const otherSnap = await doc(db, "users", userID, "Favorites", "7");
+
+      console.log("otherSnap", otherSnap); */
+
+      return true;
+    } catch (error) {
+      console.log("error.message", error.message);
+      return false;
+    }
+  };
+
   return (
     <div>
-      <favContext.Provider value={{ addFavorite, removeFavorite }}>
+      <favContext.Provider
+        value={{ addFavorite, removeFavorite, removeAllFavorites }}
+      >
         {props.children}
       </favContext.Provider>
     </div>

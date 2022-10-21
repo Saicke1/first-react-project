@@ -1,4 +1,4 @@
-import React, { useContext /* , useState, useEffect */ } from "react";
+import React, { useContext } from "react";
 import "./BottomNavBar.css";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import { BsFillHouseDoorFill } from "react-icons/bs";
@@ -6,25 +6,11 @@ import { BsFillChatRightDotsFill } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsJustifyLeft } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-/* import { userInfo } from "../useContext/UserContext"; */
 import { authContext } from "../useContext/UserAuthContext";
 
 const BottomNavBar = () => {
   const { isLoggedIn } = useContext(authContext);
   const navigate = useNavigate();
-  /*const [leadLogin, setLeadLogin] = useState(false);
-  const [users] = useContext(userInfo); */
-
-  /*   {
-    users &&
-      users.map((each) => {
-        if (each.state === true) {
-          leadLogin = true;
-        }
-      });
-  } */
-
-  /* console.log("isLoggedIn", isLoggedIn); */
 
   return (
     <div className="navBar">

@@ -10,8 +10,6 @@ const DataEpi = () => {
 
   const url = `https://spapi.dev/api/episodes/?page=${pageNumber}`;
 
-  /* console.log('Here is the final fetched data:', episodes)  */
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(url);
