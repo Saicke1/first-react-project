@@ -14,8 +14,8 @@ const DeletingUser = () => {
   const removeEverything = async () => {
     const success = await removeAllFavorites(userID);
     if (success) {
-      /* eraseUser(); */
-      console.log("All favorites are removed!");
+      eraseUser();
+      console.log("All favorites are removed and the user itself!");
     } else {
       console.log("Favorites haven't been removed or went false!");
     }

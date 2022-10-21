@@ -64,22 +64,26 @@ const FavoriteContext = (props) => {
   const removeAllFavorites = async (userID) => {
     try {
       console.log("Remove all Favs was clicked.");
-      /* console.log("userID", userID); */
-
-      /*  const docsSnap = await getDocs(
+      const allFavsIds = await getDocs(
         collection(db, "users", userID, "Favorites")
       );
-
-      docsSnap.forEach((each) => {
-        console.log(each.data());
-        deleteDoc(doc(each));
-        console.log("Doc is deleted."); 
+      const array = [];
+      allFavsIds.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        array.push(doc.id);
       });
+      console.log("array", array);
 
-      const otherSnap = await doc(db, "users", userID, "Favorites", "7");
-
-      console.log("otherSnap", otherSnap); */
-
+      if (array.length !== 0) {
+        array.forEach((each) => {
+          deleteDoc(doc(db, "users", userID, "Favorites", each));
+        });
+        await deleteDoc(doc(db, "users", userID));
+        console.log("All Favorites are removed!");
+      } else {
+        console.log("There are not Favorites to be removed!");
+      }
       return true;
     } catch (error) {
       console.log("error.message", error.message);
