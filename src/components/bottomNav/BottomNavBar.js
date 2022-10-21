@@ -17,9 +17,15 @@ const BottomNavBar = () => {
       {console.log("infinite Loop?")}
       <BsFillCaretLeftFill onClick={() => navigate(-1)} className="icons" />
 
-      <Link to="/listEpisodes">
-        <BsJustifyLeft className="icons" />
-      </Link>
+      {isLoggedIn ? (
+        <Link to="/listEpisodes">
+          <BsJustifyLeft className="icons" />
+        </Link>
+      ) : (
+        <Link to="/login">
+          <BsJustifyLeft className="icons" />
+        </Link>
+      )}
 
       <Link to="/home">
         <BsFillHouseDoorFill className="houseIcon" />
