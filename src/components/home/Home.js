@@ -34,12 +34,19 @@ const Home = () => {
                 </Button>
               </Link>
             )}
-
-            <Link to="/listEpisodes">
-              <Button style={{ backgroundColor: "#0FA4EE" }}>
-                Don't care, show me the list of episodes!
-              </Button>
-            </Link>
+            {isLoggedIn ? (
+              <Link to="/listEpisodes">
+                <Button style={{ backgroundColor: "#0FA4EE" }}>
+                  Don't care, show me the list of episodes!
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Button style={{ backgroundColor: "#0FA4EE" }}>
+                  Don't care, show me the list of episodes!
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
